@@ -1,0 +1,35 @@
+##adaptive-quadrature
+You found a Clojure implementation of Simpson's Adaptive Quadrature.  
+There are a few methods for numerically computing an integral.  Ideally,
+the method you choose would consider the behavior of the function you wish 
+to integrate. If you have some singularity, or "near" singularity ugliness, 
+in your function, your user would want to measure smaller pieces under the 
+funky part of the curve.  See 
+http://en.wikipedia.org/wiki/Numerical_integration 
+and
+http://en.wikipedia.org/wiki/Adaptive_Simpson's_method
+for more information.
+
+## Usage
+
+Suppose we want to integrate a real valued function f, of one argument, 
+over [a, b] with accuracy eps and no more than n iterations (call depth, in
+our case).  We would write:
+  (adaptive-quadrature f a b eps n)
+
+The unit tests lay out some concrete examples for us:
+
+  (let [a 0 
+        b 1 
+        n 22 
+        eps 1.0E-6 
+        actual (/ 2 3.)
+        f sqrt]
+    (adaptive-quadrature f a b eps n))
+  0.6666666471302622
+
+## License
+
+Copyright (C) 2014 Daniel Aaron Phelps 
+
+Distributed under the Eclipse Public License, the same as Clojure.
